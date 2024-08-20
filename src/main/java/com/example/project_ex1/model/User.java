@@ -3,7 +3,7 @@ package com.example.project_ex1.model;
 public class User {
     private int id;
     private String name;
-
+    private Long userId;
     // 생성자
     public User() {}
 
@@ -18,6 +18,9 @@ public class User {
     }
     public void setId(int id) {
         this.id = id;
+    }
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {

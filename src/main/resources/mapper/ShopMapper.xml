@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.project_ex1.repository.ShopMapper">
+
+    <select id="selectSample" resultType="HashMap">
+        SELECT * FROM TB_USER;
+    </select>
+
+    <select id="GetNameWithID" parameterType="Long" resultType="String">
+        SELECT user_id FROM TB_USER WHERE user_id = #{ID} limit 1;
+    </select>
+    <insert id="insertUser" parameterType="com.example.project_ex1.model.User">
+        INSERT INTO TB_USER (user_name, user_email, user_phone_number, reg_dt)
+        VALUES (#{userName}, #{userEmail}, #{userPhoneNumber}, NOW())
+    </insert>
+
+    <select id="selectAllUsers" resultType="com.example.project_ex1.model.User">
+        SELECT user_id as userId, user_name as userName, user_email as userEmail,
+        user_phone_number as userPhoneNumber, reg_dt as regDt
+        FROM TB_USER
+    </select>
+
+    <select id="selectUserById" parameterType="Long" resultType="com.example.project_ex1.model.User">
+        SELECT user_id as userId, user_name as userName, user_email as userEmail,
+        user_phone_number as userPhoneNumber, reg_dt as regDt
+        FROM TB_USER WHERE user_id = #{userId}
+    </select>
+
+    <update id="updateUser" parameterType="com.example.project_ex1.model.User">
+        UPDATE TB_USER
+        SET user_name = #{userName}, user_email = #{userEmail},
+        user_phone_number = #{userPhoneNumber}
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="deleteUser" parameterType="Long">
+        DELETE FROM TB_USER WHERE user_id = #{userId}
+    </delete>
+
+</mapper>
